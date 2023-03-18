@@ -7,13 +7,13 @@ export const Check = () => {
   const [msg, setMsg] = useState<string>("당신의 티어를 맞춰보겠습니다.");
   const [state, setState] = useState<string>("waiting");
   const [color, setColor] = useState("red");
-  const { result, saveResult } = useStore();
+  const { result, saveResult, resetResult } = useStore();
+  const [bool, setBool] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(0);
   const Num = useStore(state => state.result);
   const timeout = useRef<NodeJS.Timeout | null>(null);
   const stratTime = useRef<number>();
   const endTime = useRef<number>();
-  const [bool, setBool] = useState<boolean>(false);
-  const [count, setCount] = useState<number>(0);
 
   const ClickScreen = () => {
     if (state === "waiting") {
@@ -36,17 +36,26 @@ export const Check = () => {
     } else if (state === "now") {
       endTime.current = +new Date();
       setState("waiting");
-      setMsg("");
+      setMsg(`총 기회 ${count}/5번`);
       setColor("red");
       Num.push((endTime.current || 0) - (stratTime.current || 0));
       if (count === 5) {
         setBool(true);
+        setColor("gray");
+        setMsg(
+          "기회를 다 사용하였습니다.\n다시 플레이하고 싶으시면 한번 더 클릭해주세요."
+        );
         setState("finish");
       }
-    } else if (state === "finish") {
-      setColor("gray");
+    } else if (state == "finish") {
+      setMsg("초록색으로 변경 되었을 때 Click하세요!");
+      setState("ready");
+      setCount(0);
+      resetResult();
+      setBool(false);
+      setColor("blue");
     }
-
+    console.log(result);
     console.log(count);
     console.log(state);
   };
