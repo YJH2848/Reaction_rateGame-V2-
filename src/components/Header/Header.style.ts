@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 export const Header = styled.header`
   background-color: rgba(128, 128, 128, 0.5);
   color: white;
@@ -8,7 +8,6 @@ export const Header = styled.header`
   align-items: center;
   height: 7vh;
   width: 100%;
-  border: 2px solid black;
   box-sizing: border-box;
 `;
 
@@ -19,7 +18,7 @@ export const MenuContainer = styled.div`
   width: 60%;
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled(Link)`
   cursor: pointer;
   height: 100%;
   display: flex;
@@ -27,11 +26,12 @@ export const MenuItem = styled.div`
   align-items: center;
   width: 200px;
   transition: all 0.3s ease;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  text-decoration-line: none;
+  color: white;
+
   &:hover {
     transform: scale(0.9);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-    height: 105%;
+    height: 100%;
   }
 `;

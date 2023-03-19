@@ -1,5 +1,5 @@
 import { useStore } from "../../state/zustand";
-import * as S from "./Tier.style";
+import * as S from "./Avg.style";
 interface Props {
   name: boolean;
 }

@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import * as S from "./Check.style";
 import { useStore } from "../../state/zustand";
-import { Tier } from "../Tier/Trer";
+import { Tier } from "../Avg/Avg";
 
 export const Check = () => {
   const firstMsg = "당신의 티어를 맞춰보겠습니다.";
@@ -26,7 +26,7 @@ export const Check = () => {
         setState("now");
         setMsg("클릭!");
         setColor("green");
-        setCount(count + 3);
+        setCount(count + 5);
         stratTime.current = +new Date();
       }, Math.floor(Math.random() * 1000) + 3000);
     } else if (state === "ready") {
@@ -40,13 +40,13 @@ export const Check = () => {
       setMsg(`총 기회 ${count}/5번`);
       setColor("red");
       Num.push((endTime.current || 0) - (stratTime.current || 0));
-      if (count === 6) {
-        setBool(true);
+      if (count === 5) {
         setColor("gray");
         setMsg(
           "기회를 다 사용하였습니다.\n다시 플레이하고 싶으시면 한번 더 클릭해주세요."
         );
         setState("finish");
+        setBool(true);
       }
     } else if (state == "finish") {
       setState("waiting");
@@ -62,7 +62,7 @@ export const Check = () => {
       <S.Screen onClick={ClickScreen} style={{ background: `${color}` }}>
         <S.Comment>{msg}</S.Comment>
         <br />
-        {bool ? null : <S.Rate>너의 반속은 :{Num.join(", ")}</S.Rate>}
+        {bool ? null : <S.Rate>너의 반속은 : {Num.join(", ")}</S.Rate>}
 
         <Tier name={bool} />
       </S.Screen>

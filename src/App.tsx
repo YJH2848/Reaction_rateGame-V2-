@@ -1,25 +1,16 @@
-import { Check } from "./components/Check/Check";
 import { Reset } from "styled-reset";
-import { Header } from "./components/Header/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
+import { Game } from "./pages/Game";
+import { Tier } from "./pages/Tier";
 export const App = () => {
   return (
-    <div>
-      <Bg>
-        <Reset />
-        <Header />
-        <Check />
-      </Bg>
-    </div>
+    <BrowserRouter>
+      <Reset />
+      <Routes>
+        <Route path="/" element={<Game />} />
+        <Route path="/tier" element={<Tier />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
-
-export const Bg = styled.body`
-  background-image: url("./img/bg.png");
-  background-size: cover;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
