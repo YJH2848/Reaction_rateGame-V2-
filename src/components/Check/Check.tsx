@@ -11,7 +11,7 @@ export const Check = () => {
   const { result, saveResult, resetResult } = useStore();
   const [bool, setBool] = useState<boolean>(false);
   const [count, setCount] = useState<number>(0);
-  const Num = useStore((state) => state.result);
+  const Num = useStore(state => state.result);
   const timeout = useRef<NodeJS.Timeout | null>(null);
   const stratTime = useRef<number>();
   const endTime = useRef<number>();
@@ -26,7 +26,7 @@ export const Check = () => {
         setState("now");
         setMsg("클릭!");
         setColor("green");
-        setCount(count + 5);
+        setCount(count + 1);
         stratTime.current = +new Date();
       }, Math.floor(Math.random() * 1000) + 3000);
     } else if (state === "ready") {
@@ -42,9 +42,7 @@ export const Check = () => {
       Num.push((endTime.current || 0) - (stratTime.current || 0));
       if (count === 5) {
         setColor("gray");
-        setMsg(
-          "기회를 다 사용하였습니다.\n다시 플레이하고 싶으시면 한번 더 클릭해주세요."
-        );
+        setMsg("다시 플레이하고 싶으시면 한번 더 클릭해주세요.");
         setState("finish");
         setBool(true);
       }
