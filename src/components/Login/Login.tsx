@@ -4,7 +4,6 @@ import { useState } from "react";
 
 interface DecodedToken {
   name: string;
-  // 필요한 다른 프로퍼티가 있다면 추가해줍니다.
 }
 
 export const Login = () => {
